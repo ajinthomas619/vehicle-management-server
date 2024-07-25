@@ -9,7 +9,7 @@ const vehicleRouter = express.Router()
 vehicleRouter.get('/get-vehicle',getAllVehicles)
 vehicleRouter.post('/add-vehicle',upload.single('file'),addVehicle)
 vehicleRouter.put('/update-vehicle',upload.single('file'),updateVehicle)
-vehicleRouter.delete('/delete-vehicle',deleteVehicle)
+vehicleRouter.delete('/delete-vehicle/:id',deleteVehicle)
 vehicleRouter.get('/search-vehicle/:regex',searchVehicle)
 vehicleRouter.get('/get-vehicle/:id',getVehicleById)
 
