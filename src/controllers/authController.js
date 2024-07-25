@@ -5,13 +5,14 @@ export const createUser = async (req, res) => {
   try {
     const { username, fullname, email, password, phone } = req.body;
 
-    const userExists = await User.find({ email: email });
+    const userExists = await User.findOne({ email: email });
+    console.log("user ecxists",userExists)
     if (userExists) {
       return res
         .status(400)
         .json({ status: false, message: "User already exists" });
     }
-    const hashedPass = hashPassword(password);
+    const hashedPass = await hashPassword(password);
 
     const user = await User.create({
       username: username,
@@ -23,7 +24,7 @@ export const createUser = async (req, res) => {
     if (user) {
   createAccessToken(user._id,process.env.JWT_SECRET)
       return res
-        .status(201)
+        .status(200)
         .json({
           status: true,
           message: "User created successfully",

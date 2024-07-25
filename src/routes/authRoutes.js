@@ -5,7 +5,7 @@ const authRouter = express.Router()
 
 
 
-authRouter.post('signup',createUser)
+authRouter.post('/signup',createUser)
 authRouter.post('/login',findUser)
 
 
